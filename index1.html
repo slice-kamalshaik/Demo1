@@ -1,0 +1,286 @@
+// ...existing code...
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Rural Edge — Login</title>
+    <style>
+        :root{
+            --bg-1: #f5f8ff;
+            --bg-2: #eef6ff;
+            --card: #ffffff;
+            --accent: #0b63ff;
+            --accent-2: #6fb3ff;
+            --text: #0b1b2b;
+            --muted: #64748b;
+            --success: #059669;
+            --danger: #ef4444;
+            --radius:14px;
+            --glass: rgba(255,255,255,0.6);
+        }
+
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            margin:0;
+            font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+            background: radial-gradient(1200px 600px at 10% 10%, var(--bg-2), transparent 20%), linear-gradient(180deg, var(--bg-1), #ffffff 60%);
+            color:var(--text);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:32px;
+        }
+
+        .wrap{
+            width:100%;
+            max-width:960px;
+            display:grid;
+            grid-template-columns: 1fr 420px;
+            gap:28px;
+            align-items:center;
+            padding:18px;
+        }
+
+        .visual{
+            background: linear-gradient(180deg, rgba(11,99,255,0.08), rgba(107,132,255,0.04));
+            border-radius:var(--radius);
+            padding:40px;
+            min-height:360px;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:flex-start;
+            gap:18px;
+            box-shadow: 0 10px 40px rgba(11,63,155,0.06);
+        }
+
+        .logo {
+            display:flex;
+            align-items:center;
+            gap:12px;
+        }
+        .logo svg{width:52px;height:52px}
+        .brand {font-size:22px;font-weight:700;color:var(--text)}
+        .visual p{margin:0;color:var(--muted);max-width:48ch}
+
+        .card{
+            background: linear-gradient(180deg, rgba(255,255,255,0.8), var(--card));
+            border-radius:calc(var(--radius) - 4px);
+            padding:26px;
+            box-shadow: 0 8px 30px rgba(15,23,36,0.06);
+            border:1px solid rgba(11,63,155,0.06);
+        }
+
+        h1{margin:0 0 6px;font-size:20px}
+        p.lead{margin:0 0 18px;color:var(--muted);font-size:14px}
+
+        form .field{margin-bottom:14px}
+        label{display:block;font-size:13px;margin-bottom:6px;color:var(--muted)}
+
+        input[type="email"], input[type="password"], input[type="text"]{
+            width:100%;
+            padding:12px 14px;
+            border-radius:10px;
+            border:1px solid rgba(11,63,155,0.08);
+            background: linear-gradient(180deg, #ffffff, #fbfdff);
+            font-size:14px;
+            color:var(--text);
+            transition:box-shadow .12s ease, transform .08s ease;
+        }
+        input:focus{outline:none;box-shadow:0 6px 20px rgba(11,99,255,0.08);transform:translateY(-1px)}
+
+        .row{display:flex;gap:10px;align-items:center}
+        .checkbox{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+
+        button[type="submit"]{
+            width:100%;
+            padding:12px;
+            border-radius:10px;
+            border:0;
+            background: linear-gradient(90deg,var(--accent), var(--accent-2));
+            color:white;
+            font-weight:700;
+            cursor:pointer;
+            box-shadow:0 12px 30px rgba(11,99,255,0.12);
+            transition:transform .12s ease, box-shadow .12s ease;
+        }
+        button[type="submit"]:active{transform:translateY(1px)}
+
+        .note{margin-top:12px;font-size:13px;color:var(--muted);text-align:center}
+        .help{margin-top:10px;font-size:13px;color:var(--danger);min-height:18px}
+
+        .password-wrap{position:relative}
+        .toggle-pass{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:transparent;border:0;padding:6px 8px;cursor:pointer;color:var(--muted);font-size:13px}
+
+        .success{background:linear-gradient(90deg, rgba(6,95,70,0.06), rgba(6,95,70,0.02));border:1px solid rgba(6,95,70,0.08);color:#064e3b;padding:10px;border-radius:8px;margin-bottom:12px;font-size:14px}
+
+        @media (max-width:880px){
+            .wrap{grid-template-columns:1fr;max-width:560px}
+            .visual{order:2}
+        }
+        @media (max-width:480px){
+            .visual{padding:20px;min-height:200px}
+            body{padding:18px}
+        }
+    </style>
+</head>
+<body>
+    <main role="main" aria-labelledby="login-title">
+        <div class="wrap">
+            <section class="visual" aria-hidden="true">
+                <div class="logo" aria-hidden="true">
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                        <defs>
+                            <linearGradient id="g" x1="0" x2="1">
+                                <stop offset="0" stop-color="#0b63ff"/>
+                                <stop offset="1" stop-color="#6fb3ff"/>
+                            </linearGradient>
+                        </defs>
+                        <rect x="6" y="18" width="52" height="28" rx="6" fill="url(#g)" opacity="0.15"/>
+                        <path d="M20 44c0-6 6-10 12-10s12 4 12 10v4H20v-4z" fill="#0b63ff" opacity="0.12"/>
+                        <circle cx="24" cy="28" r="6" fill="#0b63ff"/>
+                    </svg>
+                    <div>
+                        <div class="brand">Rural Edge</div>
+                        <div style="font-size:13px;color:var(--muted)">Smart rural connectivity & insights</div>
+                    </div>
+                </div>
+                <p>Securely manage access to your project's dashboards, reports and team settings. Built for small towns, farms and co-ops.</p>
+            </section>
+
+            <section class="card" aria-labelledby="login-title">
+                <h1 id="login-title">Rural Edge</h1>
+                <p class="lead">Enter your email and password to continue.</p>
+
+                <div id="message" aria-live="polite"></div>
+
+                <form id="loginForm" novalidate>
+            <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required placeholder="you@example.com" />
+            </div>
+
+            <div class="field password-wrap">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" autocomplete="current-password" required placeholder="Enter password" />
+                <button type="button" class="toggle-pass" id="togglePass" aria-label="Toggle password visibility">Show</button>
+            </div>
+
+            <div class="row" style="justify-content:space-between; margin-bottom:12px;">
+                <label class="checkbox"><input id="remember" type="checkbox" /> Remember me</label>
+                <a href="#" id="forgot" style="font-size:13px;color:var(--accent);text-decoration:none">Forgot?</a>
+            </div>
+
+            <div class="help" id="helpText" role="status"></div>
+
+            <button type="submit" id="submitBtn">Sign in</button>
+
+            <p class="note">Demo account: <strong>user@example.com</strong> / <strong>password</strong></p>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Basic client-side logic: validation, show/hide password, remember email (no password stored)
+        (function(){
+            const form = document.getElementById('loginForm');
+            const emailEl = document.getElementById('email');
+            const passEl = document.getElementById('password');
+            const helpEl = document.getElementById('helpText');
+            const msgEl = document.getElementById('message');
+            const toggle = document.getElementById('togglePass');
+            const remember = document.getElementById('remember');
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Populate remembered email
+            try {
+                const remembered = localStorage.getItem('demo_remember_email');
+                if (remembered) {
+                    emailEl.value = remembered;
+                    remember.checked = true;
+                }
+            } catch (e) { /* ignore storage errors */ }
+
+            toggle.addEventListener('click', () => {
+                const isPwd = passEl.type === 'password';
+                passEl.type = isPwd ? 'text' : 'password';
+                toggle.textContent = isPwd ? 'Hide' : 'Show';
+                toggle.setAttribute('aria-pressed', String(isPwd));
+            });
+
+            function setHelp(text, isError){
+                helpEl.textContent = text || '';
+                helpEl.style.color = isError ? 'var(--danger)' : 'var(--muted)';
+            }
+
+            function setMessage(html) {
+                msgEl.innerHTML = html || '';
+            }
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                setHelp('');
+                setMessage('');
+
+                const email = emailEl.value.trim();
+                const password = passEl.value;
+
+                if (!email) {
+                    setHelp('Email is required.', true);
+                    emailEl.focus();
+                    return;
+                }
+                // simple email pattern
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!re.test(email)) {
+                    setHelp('Enter a valid email address.', true);
+                    emailEl.focus();
+                    return;
+                }
+                if (!password || password.length < 6) {
+                    setHelp('Password must be at least 6 characters.', true);
+                    passEl.focus();
+                    return;
+                }
+
+                // Simulate auth request
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Signing in...';
+
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Sign in';
+
+                    // Demo check: accept demo credentials only
+                    if (email.toLowerCase() === 'user@example.com' && password === 'password') {
+                        setMessage('<div class="success">Signed in successfully. Redirecting…</div>');
+                        // Save email only when 'remember' checked
+                        try {
+                            if (remember.checked) localStorage.setItem('demo_remember_email', email);
+                            else localStorage.removeItem('demo_remember_email');
+                        } catch (e){}
+
+                        // In a real app you'd redirect; here just clear password and focus
+                        passEl.value = '';
+                        setTimeout(() => {
+                            setMessage('');
+                            alert('Demo: login successful — replace with real redirect.');
+                        }, 700);
+                    } else {
+                        setHelp('Invalid email or password.', true);
+                        passEl.select();
+                    }
+                }, 700);
+            });
+
+            // Support Enter key on password to submit
+            passEl.addEventListener('keydown', (ev) => {
+                if (ev.key === 'Enter') form.dispatchEvent(new Event('submit', {cancelable:true}));
+            });
+        })();
+    </script>
+</body>
+</html>
